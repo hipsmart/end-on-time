@@ -1,0 +1,27 @@
+{
+    "appKeys": {
+        "KEY_EVENT_TIME": 1,
+        "KEY_EVENT_TITLE": 0
+    },
+    "capabilities": [
+        "location"
+    ],
+    "companyName": "Erik Swedlund",
+    "longName": "End on Time",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "End on Time",
+    "targetPlatforms": [
+        "aplite",
+        "basalt",
+        "chalk"
+    ],
+    "uuid": "3c4a4a5b-a14a-402b-8a75-df25d5395e19",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
