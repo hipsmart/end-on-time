@@ -4,7 +4,8 @@
         "KEY_EVENT_TITLE": 0
     },
     "capabilities": [
-        "location"
+        "location",
+        "configurable"
     ],
     "companyName": "Erik Swedlund",
     "longName": "End on Time",
@@ -20,7 +21,7 @@
         "chalk"
     ],
     "uuid": "3c4a4a5b-a14a-402b-8a75-df25d5395e19",
-    "versionLabel": "1.0",
+    "versionLabel": "0.1",
     "watchapp": {
         "watchface": true
     }
