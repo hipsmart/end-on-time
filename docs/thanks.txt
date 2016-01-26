@@ -1,0 +1,4 @@
+To thank:
+https://css-tricks.com/probably-use-initial-scale1/
+https://github.com/pebble/slate
+https://gist.github.com/zostay/9684420
