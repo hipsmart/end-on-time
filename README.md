@@ -4,6 +4,7 @@ Pebble watch face
 Teaching myself to code for the Pebble watch by creating this watchface.
 
 Screenshot of current state, 25 January 2016:
+
 ![screenshot](https://raw.githubusercontent.com/hipsmart/end-on-time/master/docs/screenshot2016-01-25.png)
 
 Background:
