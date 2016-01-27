@@ -5,6 +5,8 @@
   <title>End on Time Configuration</title>
   <link rel='stylesheet' type='text/css' href='css/slate.min.css'>
   <script src='js/slate.min.js'></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
   <style>
   .title {
     padding: 15px 10px;
@@ -21,27 +23,35 @@
   <body>
     <h1 class='title'>End on Time Configuration</h1>
 
-    <div class='item-container'>
-      <div class='item-container-content'>
-        <div class='item'>
-          Connecting your Google Calendar enables the countdown feature.
-        </div>
-      </div>
-    </div>
 
-	<div class="item-container">
-	  <div class="item-container-header">Sign in to your Google Calendar</div>
-	  <div class="item-container-content">
-	    <label class="item">
-		 <div class="item-input-wrapper item-input-wrapper-button">
-		   <input type="text" class="item-input" name="input-1" placeholder="Google account">
-		 </div>
-		 <input type="button" class="item-button item-input-button" value="GO">
-	    </label>
-	  </div>
-	</div>
 
-	<div class="item-container">
+
+
+
+
+
+
+
+
+        <script id="hb-template" type="text/x-handlebars-template">
+        {{#if code}}<p>Google Calendar is setup.</p>{{/if}}
+        {{#if code_error}}<p style="color: red">{{code_error}}</p>{{/if}}
+
+	{{#unless code}}
+        <p><a href="https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=offline&prompt=consent%20select_account&client_id={{GOOGLE_CLIENT_ID}}&redirect_uri={{CATCHAUTH_URL}}&scope={{SCOPE}}">
+            Give Watchapp access to your Google Calendar
+        </a></p>
+		<div class="item-container">
+			<div class="item-container-header">Give access to your Google Calendar</div>
+			<div class="button-container">
+			    <input type="button" class="item-button" value="AUTHORIZE">
+			</div>
+		</div>
+	{{/unless}}
+        {{#if code}}
+        
+        
+ 	<div class="item-container">
 	  <div class="item-container-header">Event Filter</div>
 	  <div class="item-container-content">
 	    <label class="item">
@@ -51,7 +61,7 @@
 	    </label>
 	  </div>
       <div class='item-container-footer'>You can specify a short bit of text that you can place at
-      	the beginning of calendar events that you want to activate the countdown feature. Any
+      	the beginning of calendar events that you want to activate the countdown feature. If specified, any
       	calendar events without this prefix will be ignored.
       </div>
 	</div>
@@ -75,6 +85,67 @@
         <input id='submit_button' type='button' class='item-button' value='SUBMIT'>
       </div>
     </div>
+       
+        
+        
+        <p><a href="javascript:void(0)" id="clear-code">Stop using your Google Calendar</a></p>
+
+        <p>Clicking the link above does not prevent the Watchapp from having access to your calendar, it just tells it to stop using it. To
+			completely disable access to your calendar, you need to visit the <a href="https://security.google.com/settings/security/permissions?pli=1">Google
+			Account Permissions</a> page to revoke access to this watch application.</p>
+        {{/if}}
+
+        <form>
+            <input type="hidden" id="code" name="code" value="{{code}}">
+            <input type="button" id="finished" name="submit" value="Save">
+        </form>
+        </script>
+
+        <script type="text/javascript">
+            var json = window.location.hash;
+            if (json) {
+                json = json.substring(1);
+            }
+            else {
+                json = "{}";
+            }
+            var conf = JSON.parse(json);
+            var source = $("#hb-template").html();
+            var template = Handlebars.compile(source);
+            
+            conf.CONFIG_URL = "http://www.erikswedlund.com/end-on-time/config.html#"
+            conf.CATCHAUTH_URL = "http://www.erikswedlund.com/end-on-time/catchauth.html";
+            $('body').append(template(conf));
+            $('#clear-code').on('click', function() {
+                conf.code = '';
+                window.location.href = conf.CONFIG_URL + JSON.stringify(conf);
+                window.location.reload();
+            });
+            $('#finished').on('click', function() {
+                window.location.href = "pebblejs://close#" + JSON.stringify({
+                    "code": $("#code").val()
+                });
+            });
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </body>
   <script>
   function getConfigData() {
