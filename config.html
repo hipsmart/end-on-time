@@ -34,7 +34,7 @@
 	  <div class="item-container-content">
 	    <label class="item">
 		 <div class="item-input-wrapper item-input-wrapper-button">
-		   <input type="text" class="item-input" name="input-2" placeholder="Google account">
+		   <input type="text" class="item-input" name="input-1" placeholder="Google account">
 		 </div>
 		 <input type="button" class="item-button item-input-button" value="GO">
 	    </label>
@@ -46,7 +46,7 @@
 	  <div class="item-container-content">
 	    <label class="item">
 		 <div class="item-input-wrapper">
-		   <input type="text" class="item-input" name="input-1" placeholder="e.g. EOT">
+		   <input id="event_filter_textbox" type="text" class="item-input" name="input-2" placeholder="e.g. EOT">
 		 </div>
 	    </label>
 	  </div>
@@ -78,18 +78,18 @@
   </body>
   <script>
   function getConfigData() {
-    var backgroundColorPicker = document.getElementById('background_color_picker');
+    var eventFilterTextbox = document.getElementById('event_filter_textbox');
     var vibrateEndCheckbox = document.getElementById('vibrate_end_checkbox');
     var vibrateBeginCheckbox = document.getElementById('vibrate_begin_checkbox');
  
     var options = {
-		'background_color': backgroundColorPicker.value,
+		'event_filter': eventFilterTextbox.value,
 		'vibrate_end': vibrateEndCheckbox.checked,
 		'vibrate_begin': vibrateBeginCheckbox.checked
      
     };
     // Save for next launch
-    localStorage['background_color'] = options['background_color'];
+    localStorage['event_filter'] = options['event_filter'];
     localStorage['vibrate_end'] = options['vibrate_end'];
     localStorage['vibrate_begin'] = options['vibrate_begin'];
     console.log('Got options: ' + JSON.stringify(options));
@@ -115,14 +115,14 @@
     document.location = return_to + encodeURIComponent(JSON.stringify(getConfigData()));
   });
   (function() {
-    var backgroundColorPicker = document.getElementById('background_color_picker');
+    var eventFilterTextbox = document.getElementById('event_filter_textbox');
     var vibrateEndCheckbox = document.getElementById('vibrate_end_checkbox');
     var vibrateBeginCheckbox = document.getElementById('vibrate_begin_checkbox');
     // Load any previously saved configuration, if available
     if(localStorage['vibrate_end']) {
       vibrateEndCheckbox.checked = JSON.parse(localStorage['vibrate_end']);
       vibrateBeginCheckbox.checked = JSON.parse(localStorage['vibrate_begin']);
-      backgroundColorPicker.value = localStorage['background_color'];
+      eventFilterTextbox.value = localStorage['event_filter'];
     }
   })();
   </script>
