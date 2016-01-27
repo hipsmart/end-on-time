@@ -4,7 +4,6 @@
         "KEY_EVENT_TITLE": 0
     },
     "capabilities": [
-        "location",
         "configurable"
     ],
     "companyName": "Erik Swedlund",

@@ -17,7 +17,7 @@ static void update_time() {
   // Write the current hours and minutes into a buffer
   static char s_buffer[8];
   strftime(s_buffer, sizeof(s_buffer), clock_is_24h_style() ?
-                                          "%H:%M" : "%I:%M", tick_time);
+                                          "%H:%M" : "%I:%M%p", tick_time);
   static char s_minute[3];
   strftime(s_minute, sizeof(s_minute), "%M", tick_time);
   static int s_cd;
@@ -83,7 +83,7 @@ static void main_window_load(Window *window) {
 
   // Create message Layer
   s_message_layer = text_layer_create(
-  GRect(0, PBL_IF_ROUND_ELSE(58, 90), bounds.size.w, 50));
+  GRect(0, PBL_IF_ROUND_ELSE(58, 90), bounds.size.w, 80));
 
   // Style the text
   text_layer_set_background_color(s_message_layer, GColorClear);
@@ -118,7 +118,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
     snprintf(conditions_buffer, sizeof(conditions_buffer), "%s", conditions_tuple->value->cstring);
     // Assemble full string and display
 //    snprintf(weather_layer_buffer, sizeof(weather_layer_buffer), "minutes until %s", conditions_buffer);
-    snprintf(weather_layer_buffer, sizeof(weather_layer_buffer), "minutes until %s", "class");
+    snprintf(weather_layer_buffer, sizeof(weather_layer_buffer), "minutes left in %s", "Manager Meeting");
 
     text_layer_set_text(s_message_layer, weather_layer_buffer);
   }
