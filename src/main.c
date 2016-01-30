@@ -37,8 +37,8 @@ static void update_time() {
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
   update_time();
-  // Get weather update every 30 minutes
-  if(tick_time->tm_min % 30 == 0) {
+  // Get calendar update every 5 minutes
+  if(tick_time->tm_min % 5 == 0) {
     // Begin dictionary
     DictionaryIterator *iter;
     app_message_outbox_begin(&iter);
@@ -105,19 +105,19 @@ static void main_window_unload(Window *window) {
 
 static void inbox_received_callback(DictionaryIterator *iterator, void *context) {
   // Store incoming information
-  static char temperature_buffer[8];
-  static char conditions_buffer[32];
+  static char event_time_buffer[8];
+  static char event_title_buffer[32];
   static char weather_layer_buffer[32];
   // Read tuples for data
-  Tuple *temp_tuple = dict_find(iterator, KEY_EVENT_TIME);
-  Tuple *conditions_tuple = dict_find(iterator, KEY_EVENT_TITLE);
+  Tuple *event_time_tuple = dict_find(iterator, KEY_EVENT_TIME);
+  Tuple *event_title_tuple = dict_find(iterator, KEY_EVENT_TITLE);
   
   // If all data is available, use it
-  if(temp_tuple && conditions_tuple) {
-    snprintf(temperature_buffer, sizeof(temperature_buffer), "%dC", (int)temp_tuple->value->int32);
-    snprintf(conditions_buffer, sizeof(conditions_buffer), "%s", conditions_tuple->value->cstring);
+  if(event_time_tuple && event_title_tuple) {
+    snprintf(event_time_buffer, sizeof(event_time_buffer), "%dC", (int)event_time_tuple->value->int32);
+    snprintf(event_title_buffer, sizeof(event_title_buffer), "%s", event_title_tuple->value->cstring);
     // Assemble full string and display
-//    snprintf(weather_layer_buffer, sizeof(weather_layer_buffer), "minutes until %s", conditions_buffer);
+//    snprintf(weather_layer_buffer, sizeof(weather_layer_buffer), "minutes until %s", event_title_buffer);
     snprintf(weather_layer_buffer, sizeof(weather_layer_buffer), "minutes left in %s", "Manager Meeting");
 
     text_layer_set_text(s_message_layer, weather_layer_buffer);
