@@ -34,8 +34,15 @@
 
 
         <script id="hb-template" type="text/x-handlebars-template">
-        {{#if code}}<p>Google Calendar is setup.</p>{{/if}}
-        {{#if code_error}}<p style="color: red">{{code_error}}</p>{{/if}}
+	{{#if code_error}}
+		<div class="item-container">
+			<div class="item-container-content">
+				<div class="item">
+					<span style="color: red">{{code_error}}</span>
+				</div>
+			</div>
+		</div>
+	{{/if}}
 
 	{{#unless code}}
 			<div class="item-container">
@@ -47,7 +54,8 @@
 				</div>
 			</div>
 	{{/unless}}
-        {{#if code}}
+
+	{{#if code}}
         
         
  	<div class="item-container">
@@ -86,17 +94,23 @@
     </div>
        
         
-        
-        <p><a href="javascript:void(0)" id="clear-code">Stop using your Google Calendar</a></p>
+	<div class="item-container">
+		<div class="item-container-content">
+			<div class="item">
+				 Google Calendar is setup.
+			</div>
+		</div>
+		<div class="item-container-footer">
+			To completely disable access to your calendar, you need to visit the <a href="https://security.google.com/settings/security/permissions?pli=1">Google
+			Account Permissions</a> page to revoke access to this watch application.
+		</div>
+	</div>        
 
-        <p>Clicking the link above does not prevent the Watchapp from having access to your calendar, it just tells it to stop using it. To
-			completely disable access to your calendar, you need to visit the <a href="https://security.google.com/settings/security/permissions?pli=1">Google
-			Account Permissions</a> page to revoke access to this watch application.</p>
-
-        <form>
-            <input type="hidden" id="code" name="code" value="{{code}}">
-<input type="button" id="finished" name="submit" value="Save">
-        </form>
+	<p><a href="javascript:void(0)" id="clear-code">Stop using your Google Calendar</a></p>
+	<form>
+		<input type="hidden" id="code" name="code" value="{{code}}">
+		<input type="button" id="finished" name="submit" value="Save">
+	</form>
      
         {{/if}}
 
