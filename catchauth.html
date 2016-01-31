@@ -25,7 +25,7 @@
                 code_info = code_info.substring(1);
             }
             else {
-                error('There was a problem communicating with Google. You may need to try again later (-3).');
+                error('There was a problem communicating with Google. You may need to try again later.');
             }
             // Straight from the Google...
             var params = {}, queryString = code_info,
@@ -37,7 +37,7 @@
                 next_page(params);
             }
             else {
-                error('You did not grant the Watchapp access to your calendar (-1).');
+                error('You did not grant the Watchapp access to your calendar.');
             }
         </script>
     </body>
