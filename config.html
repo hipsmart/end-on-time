@@ -119,16 +119,6 @@
             conf.CONFIG_URL = "https://hipsmart.github.io/end-on-time/config.html#"
             conf.CATCHAUTH_URL = "https://hipsmart.github.io/end-on-time/catchauth.html";
             $('body').append(template(conf));
-            $('#clear-code').on('click', function() {
-                conf.code = '';
-                window.location.href = conf.CONFIG_URL + JSON.stringify(conf);
-                window.location.reload();
-            });
-            $('#finished').on('click', function() {
-                window.location.href = "pebblejs://close#" + JSON.stringify({
-                    "code": $("#code").val()
-                });
-            });
         </script>
  
   <script>
