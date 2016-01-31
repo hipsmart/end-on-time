@@ -1,38 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>End on Time Configuration</title>
-  <link rel='stylesheet' type='text/css' href='css/slate.min.css'>
-  <script src='js/slate.min.js'></script>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
-  <style>
-  .title {
-    padding: 15px 10px;
-    text-transform: uppercase;
-    font-family: 'PT Sans', sans-serif;
-    font-size: 1.2em;
-    font-weight: 500;
-    color: #888888;
-    text-align: center;
-  }
-  </style>
-  </head>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>End on Time Configuration</title>
+		<link rel='stylesheet' type='text/css' href='css/slate.min.css'>
+		<script src='js/slate.min.js'></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+		<style>
+			.title {
+			padding: 15px 10px;
+			text-transform: uppercase;
+			font-family: 'PT Sans', sans-serif;
+			font-size: 1.2em;
+			font-weight: 500;
+			color: #888888;
+			text-align: center;
+			}
+		</style>
+	</head>
 
   <body>
     <h1 class='title'>End on Time Configuration</h1>
-
-
-
-
-
-
-
-
-
-
-
         <script id="hb-template" type="text/x-handlebars-template">
 	{{#if code_error}}
 		<div class="item-container">
@@ -55,130 +44,77 @@
 			</div>
 	{{/unless}}
 
-	{{#if code}}
-        
-        
- 	<div class="item-container">
-	  <div class="item-container-header">Event Filter</div>
-	  <div class="item-container-content">
-	    <label class="item">
-		 <div class="item-input-wrapper">
-		   <input id="event_filter_textbox" type="text" class="item-input" name="input-2" placeholder="e.g. EOT" maxlength="10">
+	{{#if code}}      
+		<input type="hidden" id="code" name="code" value="{{code}}">
+		   
+		<div class="item-container">
+		  <div class="item-container-header">Event Filter</div>
+		  <div class="item-container-content">
+		    <label class="item">
+			 <div class="item-input-wrapper">
+			   <input id="event_filter_textbox" type="text" class="item-input" name="input-2" placeholder="e.g. EOT" maxlength="10">
+			 </div>
+		    </label>
+		  </div>
+		 <div class='item-container-footer'>You can specify a short bit of text that you can place at
+			the beginning of calendar events that you want to activate the countdown feature. If specified, any
+			calendar events without this prefix will be ignored.
 		 </div>
-	    </label>
-	  </div>
-      <div class='item-container-footer'>You can specify a short bit of text that you can place at
-      	the beginning of calendar events that you want to activate the countdown feature. If specified, any
-      	calendar events without this prefix will be ignored.
-      </div>
-	</div>
-
-    <div class='item-container'>
-      <div class='item-container-header'>Vibration</div>
-      <div class='item-container-content'>
-        <label class='item'>
-          5 minutes before event ENDS
-          <input id='vibrate_end_checkbox' type='checkbox' class='item-toggle' checked>
-        </label>
-         <label class='item'>
-          5 minutes before event BEGINS
-          <input id='vibrate_begin_checkbox' type='checkbox' class='item-toggle' checked>
-        </label>
-     </div>
-    </div>
-
-    <div class='item-container'>
-      <div class='button-container'>
-        <input id='submit_button' type='button' class='item-button' value='SUBMIT'>
-      </div>
-    </div>
-       
-        
-	<div class="item-container">
-		<div class="item-container-content">
-			<div class="item">
-				 Google Calendar is setup.
+		</div>
+	
+	    <div class='item-container'>
+		 <div class='item-container-header'>Vibration</div>
+		 <div class='item-container-content'>
+		   <label class='item'>
+			5 minutes before event ENDS
+			<input id='vibrate_end_checkbox' type='checkbox' class='item-toggle' checked>
+		   </label>
+		    <label class='item'>
+			5 minutes before event BEGINS
+			<input id='vibrate_begin_checkbox' type='checkbox' class='item-toggle' checked>
+		   </label>
+		</div>
+	    </div>
+	
+	    <div class='item-container'>
+		 <div class='button-container'>
+		   <input id='submit_button' type='button' class='item-button' value='SUBMIT'>
+		 </div>
+	    </div>
+		  
+			<div class="item-container">
+			<div class="item-container-content">
+				<div class="item">
+					 Google Calendar is connected.
+				</div>
+			</div>
+			<div class="item-container-footer">
+				To completely disable access to your calendar, you need to visit the <a href="https://security.google.com/settings/security/permissions?pli=1">Google
+				Account Permissions</a> page to revoke access to this watch application.
 			</div>
 		</div>
-		<div class="item-container-footer">
-			To completely disable access to your calendar, you need to visit the <a href="https://security.google.com/settings/security/permissions?pli=1">Google
-			Account Permissions</a> page to revoke access to this watch application.
-		</div>
-	</div>        
-
-	<p><a href="javascript:void(0)" id="clear-code">Stop using your Google Calendar</a></p>
-	<form>
-		<input type="hidden" id="code" name="code" value="{{code}}">
-		<input type="button" id="finished" name="submit" value="Save">
-	</form>
-     
-        {{/if}}
-
+	{{/if}}
 
         </script>
-
-        <script type="text/javascript">
-            var json = window.location.hash;
-            if (json) {
-                json = json.substring(1);
-            }
-            else {
-                json = "{}";
-            }
-            var conf = JSON.parse(json);
-            var source = $("#hb-template").html();
-            var template = Handlebars.compile(source);
-            
-            conf.CONFIG_URL = "http://www.erikswedlund.com/end-on-time/config.html#"
-            conf.CATCHAUTH_URL = "http://www.erikswedlund.com/end-on-time/catchauth.html";
-            $('body').append(template(conf));
-            $('#clear-code').on('click', function() {
-                conf.code = '';
-                window.location.href = conf.CONFIG_URL + JSON.stringify(conf);
-                window.location.reload();
-            });
-            $('#finished').on('click', function() {
-                window.location.href = "pebblejs://close#" + JSON.stringify({
-                    "code": $("#code").val()
-                });
-            });
-        </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  </body>
+	</body>
   <script>
   function getConfigData() {
     var eventFilterTextbox = document.getElementById('event_filter_textbox');
     var vibrateEndCheckbox = document.getElementById('vibrate_end_checkbox');
     var vibrateBeginCheckbox = document.getElementById('vibrate_begin_checkbox');
+    var codeHiddenInput = document.getElementByID('code');
  
     var options = {
 		'event_filter': eventFilterTextbox.value,
 		'vibrate_end': vibrateEndCheckbox.checked,
 		'vibrate_begin': vibrateBeginCheckbox.checked
-     
+		'code': codeHiddenInput.value
     };
     // Save for next launch
     localStorage['event_filter'] = options['event_filter'];
     localStorage['vibrate_end'] = options['vibrate_end'];
     localStorage['vibrate_begin'] = options['vibrate_begin'];
+    localStorage['code'] = options['code'];
     console.log('Got options: ' + JSON.stringify(options));
     return options;
   }
@@ -205,11 +141,14 @@
     var eventFilterTextbox = document.getElementById('event_filter_textbox');
     var vibrateEndCheckbox = document.getElementById('vibrate_end_checkbox');
     var vibrateBeginCheckbox = document.getElementById('vibrate_begin_checkbox');
+    var codeHiddenInput = document.getElementByID('code');
+    
     // Load any previously saved configuration, if available
-    if(localStorage['vibrate_end']) {
+    if(localStorage['code']) {
       vibrateEndCheckbox.checked = JSON.parse(localStorage['vibrate_end']);
       vibrateBeginCheckbox.checked = JSON.parse(localStorage['vibrate_begin']);
       eventFilterTextbox.value = localStorage['event_filter'];
+      codeHiddenInput.value = localStorage['code'];
     }
   })();
   </script>
