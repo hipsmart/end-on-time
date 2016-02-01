@@ -107,7 +107,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
   // Store incoming information
   static char event_time_buffer[8];
   static char event_title_buffer[32];
-  static char weather_layer_buffer[32];
+  static char message_layer_buffer[32];
   // Read tuples for data
   Tuple *event_time_tuple = dict_find(iterator, KEY_EVENT_TIME);
   Tuple *event_title_tuple = dict_find(iterator, KEY_EVENT_TITLE);
@@ -117,10 +117,10 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
     snprintf(event_time_buffer, sizeof(event_time_buffer), "%dC", (int)event_time_tuple->value->int32);
     snprintf(event_title_buffer, sizeof(event_title_buffer), "%s", event_title_tuple->value->cstring);
     // Assemble full string and display
-//    snprintf(weather_layer_buffer, sizeof(weather_layer_buffer), "minutes until %s", event_title_buffer);
-    snprintf(weather_layer_buffer, sizeof(weather_layer_buffer), "minutes left in %s", "Manager Meeting");
+//    snprintf(message_layer_buffer, sizeof(message_layer_buffer), "minutes until %s", event_title_buffer);
+    snprintf(message_layer_buffer, sizeof(message_layer_buffer), "minutes left in %s", "Manager Meeting");
 
-    text_layer_set_text(s_message_layer, weather_layer_buffer);
+    text_layer_set_text(s_message_layer, message_layer_buffer);
   }
 }
 
