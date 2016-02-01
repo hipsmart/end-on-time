@@ -81,5 +81,5 @@ Pebble.addEventListener('appmessage',
 //Listen for configuration page
 Pebble.addEventListener('showConfiguration', function(e) {
   // Show config page
-  Pebble.openURL('http://erikswedlund.com/end-on-time/config.html');
+  Pebble.openURL('https://hipsmart.github.io/end-on-time/config.html');
 });
