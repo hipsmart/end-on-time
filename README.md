@@ -3,7 +3,7 @@ Pebble watch face
 
 Teaching myself to code for the Pebble watch by creating this watchface.
 
-Screenshot of current state, 25 January 2016:
+Screenshot of current state, 18 Febuary 2016:
 
 ![screenshot](https://raw.githubusercontent.com/hipsmart/end-on-time/master/docs/eot_dev_2016-02-18.png)
 
