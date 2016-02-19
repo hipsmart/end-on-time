@@ -7,6 +7,7 @@ static Window *s_main_window;
 static TextLayer *s_time_layer;
 static TextLayer *s_countdown_layer;
 static TextLayer *s_message_layer;
+static GFont s_countdown_font;
 
 
 static void update_time() {
@@ -22,8 +23,8 @@ static void update_time() {
   strftime(s_minute, sizeof(s_minute), "%M", tick_time);
   static int s_cd;
   s_cd = 60 - atoi(s_minute);
-  static char s_countdown[3];
-  snprintf(s_countdown, 3, "%02d", s_cd);
+  static char s_countdown[4];
+  snprintf(s_countdown, 4, "%3d", s_cd);
   
   // Display this time on the TextLayer
   text_layer_set_text(s_time_layer, s_buffer);
@@ -71,19 +72,22 @@ static void main_window_load(Window *window) {
   
   // Create countdown Layer
   s_countdown_layer = text_layer_create(
-  GRect(0, PBL_IF_ROUND_ELSE(58, 50), bounds.size.w, 50));
+  GRect(0, PBL_IF_ROUND_ELSE(58, 40), bounds.size.w, 70));
+  
+    // Create GFont
+  s_countdown_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_AVENIR_NEXT_BOLD_60));
 
   // Style the text
   text_layer_set_background_color(s_countdown_layer, GColorWhite);
   text_layer_set_text_color(s_countdown_layer, GColorBlack);
-  text_layer_set_font(s_countdown_layer, fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD));
+  text_layer_set_font(s_countdown_layer, s_countdown_font);
   text_layer_set_text_alignment(s_countdown_layer, GTextAlignmentCenter);
   
   layer_add_child(window_layer, text_layer_get_layer(s_countdown_layer));
 
   // Create message Layer
   s_message_layer = text_layer_create(
-  GRect(0, PBL_IF_ROUND_ELSE(58, 90), bounds.size.w, 80));
+  GRect(0, PBL_IF_ROUND_ELSE(58, 100), bounds.size.w, 80));
 
   // Style the text
   text_layer_set_background_color(s_message_layer, GColorClear);
@@ -100,7 +104,9 @@ static void main_window_unload(Window *window) {
   text_layer_destroy(s_time_layer);
   text_layer_destroy(s_countdown_layer);
   text_layer_destroy(s_message_layer);
-
+  
+  // Unload GFont
+  fonts_unload_custom_font(s_countdown_font);
 }
 
 static void inbox_received_callback(DictionaryIterator *iterator, void *context) {
