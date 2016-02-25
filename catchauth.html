@@ -6,9 +6,14 @@
     <body>
         <script type="text/javascript">
             var CONFIG_URL = 'https://hipsmart.github.io/end-on-time/config.html#';
+            var CONTINUE_URL = 'https://hipsmart.github.io/end-on-time/catchtoken.html#';
             function next_page(conf) {
-                var json = JSON.stringify(conf);
-                window.location.href = CONFIG_URL + json;
+			var json = JSON.stringify(conf);
+ 			if (params.code) {
+ 				window.location.href = CONTINUE_URL + json;
+ 			} else {
+	 			window.location.href = CONFIG_URL + json;
+ 			}
             }
             function error(msg) {
                 next_page({
