@@ -6,11 +6,12 @@
     <body>
         <script type="text/javascript">
             var CONFIG_URL = 'https://hipsmart.github.io/end-on-time/config.html#';
-            var CONTINUE_URL = 'https://hipsmart.github.io/end-on-time/catchtoken.html#';
+            var CONTINUE_URL = 'https://www.googleapis.com/oauth2/v4/token?client_id=349666396245-t5rjap1al2lhpvdof8vinlohmpb99r73.apps.googleusercontent.com&client_secret=aipgFSmXGKTtalD5qQN4_wsX&redirect_uri=https://hipsmart.github.io/end-on-time/config.html&grant_type=authorization_code';
             function next_page(conf) {
 			var json = JSON.stringify(conf);
  			if (params.code) {
- 				window.location.href = CONTINUE_URL + json;
+ //				window.location.href = CONTINUE_URL + json;
+ 				echo conf;
  			} else {
 	 			window.location.href = CONFIG_URL + json;
  			}
