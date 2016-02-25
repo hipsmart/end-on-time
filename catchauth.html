@@ -10,8 +10,7 @@
             function next_page(conf) {
 			var json = JSON.stringify(conf);
  			if (params.code) {
- //				window.location.href = CONTINUE_URL + json;
- 				echo conf;
+				window.location.href = CONTINUE_URL + conf;
  			} else {
 	 			window.location.href = CONFIG_URL + json;
  			}
