@@ -10,7 +10,7 @@
             function next_page(conf) {
 			var json = JSON.stringify(conf);
  			if (params.code) {
-				window.location.href = CONTINUE_URL + code_info;
+				window.location.href = CONTINUE_URL + conf;
  			} else {
 	 			window.location.href = CONFIG_URL + json;
  			}
@@ -35,7 +35,7 @@
                 params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
             }
             if (params.code) {
-                next_page(params);
+                next_page(params.code);
             }
             else {
                 error('You did not grant the Watchapp access to your calendar.');
