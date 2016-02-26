@@ -6,11 +6,37 @@
     <body>
         <script type="text/javascript">
             var CONFIG_URL = 'https://hipsmart.github.io/end-on-time/config.html#';
-            var CONTINUE_URL = 'https://www.googleapis.com/oauth2/v4/token?client_id=349666396245-t5rjap1al2lhpvdof8vinlohmpb99r73.apps.googleusercontent.com&client_secret=aipgFSmXGKTtalD5qQN4_wsX&redirect_uri=https://hipsmart.github.io/end-on-time/config.html&grant_type=authorization_code&';
+            var CONTINUE_URL = 'https://www.googleapis.com/oauth2/v4/token?client_id=349666396245-t5rjap1al2lhpvdof8vinlohmpb99r73.apps.googleusercontent.com&client_secret=aipgFSmXGKTtalD5qQN4_wsX&redirect_uri=https://hipsmart.github.io/end-on-time/config.html&grant_type=authorization_code&code=';
+
+			function post(path, params, method) {
+			    method = method || "post"; // Set method to post by default if not specified.
+			
+			    // The rest of this code assumes you are not using a library.
+			    // It can be made less wordy if you use one.
+			    var form = document.createElement("form");
+			    form.setAttribute("method", method);
+			    form.setAttribute("action", path);
+			
+			    for(var key in params) {
+				   if(params.hasOwnProperty(key)) {
+					  var hiddenField = document.createElement("input");
+					  hiddenField.setAttribute("type", "hidden");
+					  hiddenField.setAttribute("name", key);
+					  hiddenField.setAttribute("value", params[key]);
+			
+					  form.appendChild(hiddenField);
+				    }
+			    }
+			
+			    document.body.appendChild(form);
+			    form.submit();
+			}
+
             function next_page(conf) {
 			var json = JSON.stringify(conf);
  			if (params.code) {
-				window.location.href = CONTINUE_URL + conf;
+//				window.location.href = CONTINUE_URL + conf;
+				post('https://www.googleapis.com/oauth2/v4/token', {code: conf, client_id: '349666396245-t5rjap1al2lhpvdof8vinlohmpb99r73.apps.googleusercontent.com', client_secret: 'aipgFSmXGKTtalD5qQN4_wsX', redirect_uri: 'https://hipsmart.github.io/end-on-time/config.html', grant_type: 'authorization_code'});
  			} else {
 	 			window.location.href = CONFIG_URL + json;
  			}
